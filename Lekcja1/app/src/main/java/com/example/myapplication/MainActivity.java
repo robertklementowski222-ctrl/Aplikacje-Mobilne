@@ -1,92 +1,91 @@
-package com.example.myapplication;
+package com.example.projekt;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.myapplication.databinding.ActivityMainBinding;
-
-import android.view.Menu;
-import android.view.MenuItem;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
+    private EditText editName;
+    private EditText editSurname;
+    private EditText editEmail;
+    private EditText editPassword;
+    private Button btnRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
 
-        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
+        editName = findViewById(R.id.name);
+        editSurname = findViewById(R.id.secname);
+        editEmail = findViewById(R.id.email);
+        editPassword = findViewById(R.id.password);
+        btnRegister = findViewById(R.id.button);
+
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        setSupportActionBar(binding.toolbar);
 
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.nav_host_fragment_content_main);
 
-        if (navHostFragment != null) {
-            NavController navController = navHostFragment.getNavController();
+        btnRegister.setOnClickListener(v -> {
+            if (!checkValues()) return;
+            if (!checkEmail()) return;
+            if (!checkPassword()) return;
 
-            appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-            NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        }
-
-        binding.fab.setOnClickListener(
-                view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAnchorView(R.id.fab)
-                        .setAction("Action", null).show()
-        );
+            Toast.makeText(this, "Dane są poprawne!", Toast.LENGTH_SHORT).show();
+        });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+    private boolean checkValues() {
+        String name = editName.getText().toString().trim();
+        String surname = editSurname.getText().toString().trim();
+        String email = editEmail.getText().toString().trim();
+        String password = editPassword.getText().toString().trim();
+
+        if (name.isEmpty() || surname.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Uzupełnij pola", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    private boolean checkEmail() {
+        String email = editEmail.getText().toString().trim();
+        String emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+
+        if (!Pattern.matches(emailPattern, email)) {
+            Toast.makeText(this, "Wpisz poprawny email!", Toast.LENGTH_SHORT).show();
+            return false;
         }
-
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.nav_host_fragment_content_main);
-        boolean handled = false;
-        if (navHostFragment != null) {
-            NavController navController = navHostFragment.getNavController();
-            handled = NavigationUI.navigateUp(navController, appBarConfiguration);
+
+    private boolean checkPassword() {
+        String password = editPassword.getText().toString().trim();
+        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$";
+
+        if (!Pattern.matches(passwordPattern, password)) {
+            Toast.makeText(this, "Hasło musi mieć min. 8 znaków, 1 małą, 1 dużą literę i 1 znak specjalny", Toast.LENGTH_LONG).show();
+            return false;
         }
-        return handled || super.onSupportNavigateUp();
+        return true;
     }
 }
