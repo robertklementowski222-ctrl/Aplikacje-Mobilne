@@ -7,14 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center_horizontal">
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_horizontal">
 
-        <TextView
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="git clone https://github.com" />
+
+                <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="REJESTRACJA"
@@ -28,70 +34,75 @@
             android:textSize="17sp"
             android:layout_marginTop="10dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Imię"
-            android:textSize="16sp"
-            android:layout_marginTop="30dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Imię"
+                    android:textSize="16sp"
+                    android:layout_marginTop="30dp"/>
 
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Wpisz imię"
-            android:textSize="16sp"
-            android:layout_marginTop="6dp"/>
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Wpisz imię"
+                    android:textSize="16sp"
+                    android:layout_marginTop="6dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nazwisko"
-            android:textSize="16sp"
-            android:layout_marginTop="30dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nazwisko"
+                    android:textSize="16sp"
+                    android:layout_marginTop="30dp"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Wpisz nazwisko"
-            android:textSize="16sp"
-            android:layout_marginTop="6dp"/>
+                <EditText
+                    android:id="@+id/secname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Wpisz nazwisko"
+                    android:textSize="16sp"
+                    android:layout_marginTop="6dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textSize="16sp"
-            android:layout_marginTop="30dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textSize="16sp"
+                    android:layout_marginTop="30dp"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Wpisz email"
-            android:textSize="16sp"
-            android:layout_marginTop="6dp"/>
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Wpisz email"
+                    android:textSize="16sp"
+                    android:layout_marginTop="6dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hasło"
-            android:textSize="16sp"
-            android:layout_marginTop="30dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hasło"
+                    android:textSize="16sp"
+                    android:layout_marginTop="30dp"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Wpisz Hasło"
-            android:textSize="16sp"
-            android:layout_marginTop="6dp"/>
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Wpisz Hasło"
+                    android:textSize="16sp"
+                    android:layout_marginTop="6dp"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ZAREJESTRUJ"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center_horizontal"/>
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ZAREJESTRUJ"
+                    android:layout_marginTop="30dp"
+                    android:layout_gravity="center_horizontal"/>
 
-    </LinearLayout>
+        </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
